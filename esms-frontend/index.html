@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,5 +45,96 @@
     </main>
     <footer><p>ESMS v1.0.0 | FHIR R4 Compliant | For monitoring purposes only</p></footer>
     <script src="app.js"></script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ESMS – Environmental Stress Monitoring System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Real-time environmental and physiological stress monitoring dashboard" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+
+<header class="header">
+  <h1>Environmental Stress Monitoring System (ESMS)</h1>
+  <p class="disclaimer">
+    This system visualizes environmental conditions correlated with physiological stress.
+    It does NOT perform medical diagnosis.
+  </p>
+  <div id="connectionStatus" class="connection-status">Connecting…</div>
+</header>
+
+<main class="dashboard">
+
+  <!-- OVERALL STRESS LEVEL -->
+  <section class="stress-summary">
+    <h2>Overall Environmental Stress Level</h2>
+    <div id="overallStress" class="stress-level normal">NORMAL</div>
+    <p class="stress-explanation">
+      Combined indicator based on environmental and physiological thresholds.
+    </p>
+  </section>
+
+  <!-- DETAILED STRESS CONTRIBUTORS -->
+  <section class="stress-detail-panel">
+    <h2>Current Stress Contributors</h2>
+    <div id="stressDetails" class="stress-detail-list"></div>
+  </section>
+
+  <!-- SENSOR CARDS -->
+  <section class="metrics-grid">
+    <div class="metric-card">
+      <h3>Temperature</h3>
+      <div class="metric-value" id="tempValue">--</div>
+      <div class="metric-unit">°C</div>
+      <div class="chart-container" id="tempChart"></div>
+    </div>
+
+    <div class="metric-card">
+      <h3>Humidity</h3>
+      <div class="metric-value" id="humidityValue">--</div>
+      <div class="metric-unit">%</div>
+      <div class="chart-container" id="humidityChart"></div>
+    </div>
+
+    <div class="metric-card">
+      <h3>Sound Level</h3>
+      <div class="metric-value" id="soundValue">--</div>
+      <div class="metric-unit">dB</div>
+      <div class="chart-container" id="soundChart"></div>
+    </div>
+
+    <div class="metric-card">
+      <h3>Heart Rate</h3>
+      <div class="metric-value" id="hrValue">--</div>
+      <div class="metric-unit">BPM</div>
+      <div class="chart-container" id="hrChart"></div>
+    </div>
+  </section>
+
+  <!-- CORRELATION -->
+  <section class="correlation-panel">
+    <h2>Environmental Correlation with Heart Rate</h2>
+    <div class="correlation-grid">
+      <div class="correlation-chart" id="tempHrChart"></div>
+      <div class="correlation-chart" id="soundHrChart"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>ESMS v1.0 | FHIR-oriented JSON | Monitoring & awareness only</p>
+</footer>
+
+<script src="app.js"></script>
 </body>
 </html>
