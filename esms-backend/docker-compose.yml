@@ -1,0 +1,69 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# Environmental Stress Monitoring System (ESMS) - Docker Compose
+# ═══════════════════════════════════════════════════════════════════════════════
+# Production-ready Docker Compose configuration
+
+version: '3.8'
+
+services:
+  # ─────────────────────────────────────────────────────────────────────────────
+  # ESMS Backend Service
+  # ─────────────────────────────────────────────────────────────────────────────
+  esms-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: esms-backend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=8080
+      - SENSOR_INTERVAL_MS=1000
+      - FHIR_BASE_URL=http://localhost:8080/api/fhir
+      - FHIR_PATIENT_REFERENCE=Patient/esms-monitor-subject
+      - RUST_LOG=info,esms=debug
+      - TLS_ENABLED=false
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    networks:
+      - esms-network
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # ESMS Frontend Service (Nginx serving static files)
+  # ─────────────────────────────────────────────────────────────────────────────
+  esms-frontend:
+    image: nginx:alpine
+    container_name: esms-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    volumes:
+      - ../esms-frontend:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      esms-backend:
+        condition: service_healthy
+    networks:
+      - esms-network
+
+networks:
+  esms-network:
+    driver: bridge
+
+volumes:
+  esms-data:
+    driver: local

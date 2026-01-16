@@ -1,0 +1,65 @@
+# ------------------
+# Rust / Backend
+# ------------------
+/esms-backend/target/
+**/*.rs.bk
+**/*.rs.swp
+Cargo.lock
+
+# ------------------
+# Environment files
+# ------------------
+/esms-backend/.env*
+/esms-frontend/.env*
+
+# ------------------
+# Node / Frontend
+# ------------------
+/esms-frontend/node_modules/
+/esms-frontend/dist/
+/esms-frontend/.vite/
+*.log
+
+# ------------------
+# IDE / Editor
+# ------------------
+.vscode/
+.idea/
+*.iml
+*.code-workspace
+
+# ------------------
+# OS files
+# ------------------
+.DS_Store
+Thumbs.db
+
+# ------------------
+# Docker
+# ------------------
+*.pid
+*.sock
+*.log
+docker-compose.override.yml
+
+# ------------------
+# TypeScript / Vite / Tailwind
+# ------------------
+/esms-frontend/vite-env.d.ts
+.eslintcache
+*.tsbuildinfo
+
+# ------------------
+# Python ML service (optional)
+# ------------------
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ------------------
+# Misc / backups
+# ------------------
+*.bak
+*.swp

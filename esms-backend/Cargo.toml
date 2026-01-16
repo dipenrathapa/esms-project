@@ -1,0 +1,67 @@
+[package]
+name = "esms"
+version = "0.1.0"
+edition = "2021"
+authors = ["ESMS Development Team"]
+description = "Environmental Stress Monitoring System - Real-time monitoring of environmental and physiological factors"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/your-org/esms"
+keywords = ["healthcare", "monitoring", "fhir", "sensors", "websocket"]
+categories = ["web-programming", "science"]
+
+[dependencies]
+# Web Framework
+actix-web = "4"
+actix-rt = "2"
+actix-cors = "0.7"
+actix-web-actors = "4"
+actix = "0.13"
+
+# Async Runtime
+tokio = { version = "1", features = ["full", "sync", "time", "macros", "rt-multi-thread"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Time and UUID
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+
+# Logging and Tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+tracing-actix-web = "0.7"
+
+# Configuration
+dotenv = "0.15"
+config = "0.14"
+
+# Validation
+validator = { version = "0.18", features = ["derive"] }
+
+# Error Handling
+thiserror = "1"
+anyhow = "1"
+
+# Random for fake data generation
+rand = "0.8"
+rand_distr = "0.4"
+
+# Futures
+futures = "0.3"
+
+[dev-dependencies]
+actix-test = "0.1"
+reqwest = { version = "0.12", features = ["json"] }
+tokio-test = "0.4"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[[bin]]
+name = "esms"
+path = "src/main.rs"

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESMS - Environmental Stress Monitoring System</title>
+    <meta name="description" content="Real-time environmental and physiological monitoring dashboard">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <h1>Environmental Stress Monitoring System</h1>
+        <p class="disclaimer">This system identifies conditions correlated with stress. It does NOT perform diagnosis.</p>
+        <div class="connection-status" id="connectionStatus">Connecting...</div>
+    </header>
+    <main class="dashboard">
+        <section class="metrics-grid">
+            <div class="metric-card" id="tempCard">
+                <h3>Temperature</h3>
+                <div class="metric-value" id="tempValue">--</div>
+                <div class="metric-unit">°C</div>
+                <div class="chart-container" id="tempChart"></div>
+            </div>
+            <div class="metric-card" id="humidityCard">
+                <h3>Humidity</h3>
+                <div class="metric-value" id="humidityValue">--</div>
+                <div class="metric-unit">%</div>
+                <div class="chart-container" id="humidityChart"></div>
+            </div>
+            <div class="metric-card" id="soundCard">
+                <h3>Sound Level</h3>
+                <div class="metric-value" id="soundValue">--</div>
+                <div class="metric-unit">units</div>
+                <div class="chart-container" id="soundChart"></div>
+            </div>
+            <div class="metric-card" id="hrCard">
+                <h3>Heart Rate</h3>
+                <div class="metric-value" id="hrValue">--</div>
+                <div class="metric-unit">BPM</div>
+                <div class="chart-container" id="hrChart"></div>
+            </div>
+        </section>
+        <section class="stress-indicators" id="stressIndicators"></section>
+    </main>
+    <footer><p>ESMS v1.0.0 | FHIR R4 Compliant | For monitoring purposes only</p></footer>
+    <script src="app.js"></script>
+</body>
+</html>
