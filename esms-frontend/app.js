@@ -1,3 +1,6 @@
+
+// i am a new member
+
 // const WS_URL='ws://localhost:8080/ws';const MAX_POINTS=60;
 // const data={temp:[],humidity:[],sound:[],hr:[]};
 // let ws;const charts={};
